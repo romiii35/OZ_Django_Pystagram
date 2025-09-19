@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from django.conf import settings
@@ -37,6 +38,12 @@ def login(request):
     if form.is_valid():
         django_login(request, form.get_user())
 
+        next = request.GET.get('next')
+        if next:
+            return redirect(next)
+
+        # next 기능 넣기, 안넣으면 create=> login => 홈
+        #  넣으면 create=> login => 글쓰기
         return redirect(reverse('blog_list'))
     context = {
         'form': form
