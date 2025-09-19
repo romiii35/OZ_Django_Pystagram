@@ -22,6 +22,7 @@ class Blog(models.Model):
     title = models.CharField('제목', max_length=100)
     content = models.TextField('본문')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author_id = models.IntegerField()
     # models.CASCADE => 같이 삭제
     # models.PROTECT => 삭제가 불가능함 (유저를 삭제하려고 할때, 블로그가 있으면 유저 삭제가 불가능)
     # models.SET_NULL => NULL값을 넣습니다. => 유저 삭제시 블로그의 author가 null이 됨
