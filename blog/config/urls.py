@@ -22,6 +22,7 @@ from django.views.generic import TemplateView, RedirectView
 
 from blog import views
 from member import views as member_views
+from blog import cb_views
 
 
 # class AboutView(TemplateView):
@@ -38,24 +39,18 @@ from member import views as member_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # FBV blog (function base view)
-    path('', views.blog_list, name='blog_list'),
-    path('<int:pk>/', views.blog_detail, name='blog_detail'),
-    path('create/', views.blog_create, name='blog_create'),
-    path('<int:pk>/update/', views.blog_update, name='blog_update'),
-    path('<int:pk>/delete/', views.blog_delete, name='blog_delete'),
-    # CBV blog(class base view)
+
+    path('', include('blog.urls')),
+    path('fb/', include('blog.fbv_urls')),
 
     # auth
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', member_views.signup, name='signup'),
     path('login/', member_views.login, name='login'),
-
     # path('about', TemplateView.as_view(template_name='about.html'), name='about'),
     # path('about/', AboutView.as_view(), name='about'),
     # path('redirect/', RedirectView.as_view(pattern_name= 'about'), name='redirect'),
     # # path('redirect2/', lambda req: redirect(reverse('about'))),
     # path('test/', TestView.as_view(), name='test'),
-
 
 ]
