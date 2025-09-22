@@ -44,7 +44,7 @@ def login(request):
 
         # next 기능 넣기, 안넣으면 create=> login => 홈
         #  넣으면 create=> login => 글쓰기
-        return redirect(reverse('blog_list'))
+        return redirect(reverse('blog:list'))
     context = {
         'form': form
     }
