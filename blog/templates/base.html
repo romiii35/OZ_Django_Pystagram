@@ -1,18 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
 </head>
 <body>
-    <nav style="display: flex; justify-content: space-between;">
+    <nav class="d-flex justify-content-between py-2 px-4 bg-light">
         <div>
-            <a href="{% url 'blog:list' %}">홈</a>
+            <a class="text-decoration-none text-black" href="{% url 'blog:list' %}">홈</a>
         </div>
         <div style="text-align: right">
             {% if request.user.is_authenticated %}
-                <form action="{% url 'logout' %}" method="post" style="display: inline">
+                <form action="{% url 'logout' %}" method="post" class="d-inline-block">
                     {% csrf_token %}
-                    <button>로그아웃</button>
+                    <button class="btn btn-danger btn-sm">로그아웃</button>
                 </form>
                 {{ request.user.username }}
             {% else %}
@@ -21,7 +24,14 @@
             {% endif %}
         </div>
     </nav>
+    <div class="container pt-4">
     {% block content %}{% endblock %}
+    </div>
+    <footer>
+
+
+    </footer>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
     {% block js %}{% endblock %}
 </body>
 </html>

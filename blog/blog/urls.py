@@ -13,6 +13,8 @@ urlpatterns = [
 
     path('<int:pk>/delete/', cb_views.BlogDeleteView.as_view(), name='delete'),
 
+    path('comment/create/<int:blog_pk>/', cb_views.CommentCreateView.as_view(), name='comment_create'),
+
 ]
 
 # (% url 'blog_list' %}
